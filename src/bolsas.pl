@@ -33,7 +33,7 @@
                           [])).
 
 bolsa(Bolsa, Nivel, Agencia, Modalidade, Cota, Disponibilidade) :-
-    bolsa{bolsa:Bolsa,nivel:Nivel,agencia:Agencia,modalidade:Modalidade,cota_racial:Cota,
+    bolsa{bolsa:Bolsa,nivel:Nivel,agencia:Agencia,modalidade:Modalidade,cotaracial:Cota,
           disponibilidade:Disponibilidade}.
 
 :- data_source(candidato, csv('https://raw.githubusercontent.com/brunocbr/posfil-bolsas/main/data/candidatos_bolsas.csv', [])).
