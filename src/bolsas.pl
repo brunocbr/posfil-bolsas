@@ -132,13 +132,13 @@ atribuições_bolsas(A) :-
 
 carrega_candidatos :-
     retractall(candidato(_,_,_,_,_)),
-    csv_read_file("../data/candidatos_bolsas.csv", Rows,
+    csv_read_file("../data/candidatos_bolsas.csv", [_Header|Rows],
                   [functor(candidato), arity(5), separator(0',)]),
     maplist(assert, Rows).
 
 carrega_bolsas :-
     retractall(bolsa(_,_,_,_,_,_)),
-    csv_read_file("../data/bolsas_disponíveis.csv", Rows,
+    csv_read_file("../data/bolsas_disponíveis.csv", [_Header|Rows],
                   [functor(bolsa), arity(6), separator(0',)]),
     maplist(assert, Rows).
 
