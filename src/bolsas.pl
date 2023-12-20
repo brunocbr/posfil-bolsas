@@ -37,10 +37,6 @@ cotas_geral(Nivel, ExcedenteCotasRaciais, L) :-
     append(ExcedenteCotasRaciais, L1, L2),
     ordena_bolsas(L2, L).
 
-bolsas_tipo(Nivel, Agencia, Modalidade, L) :-
-    findall(X, bolsa(X, Nivel, Agencia, Modalidade, _, _), L1),
-    ordena_Bolsas(L1, L).
-
 cumpre_requisitos(capes, 1, C) :-
     dedicação_integral(C), sem_pendências(C).
 
