@@ -1,0 +1,5 @@
+# Ignore temporary files
+*.swp
+
+# Ignore Prolog generated files
+*.pl~
