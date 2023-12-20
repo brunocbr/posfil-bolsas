@@ -3,3 +3,6 @@
 
 # Ignore Prolog generated files
 *.pl~
+
+output/*
+

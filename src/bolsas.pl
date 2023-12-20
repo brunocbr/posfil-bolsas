@@ -146,6 +146,12 @@ carrega_dados :-
     carrega_bolsas,
     carrega_candidatos.
 
+grava_distribuição :-
+    atribuições_bolsas(A),
+    append([atribuição_bolsa('Bolsa', 'Candidato', 'Nível', 'Cota racial',
+            'Agência', 'Modalidade', 'Disponibilidade')], A, Rows),
+    csv_write_file("../output/distribuição_bolsas.csv", Rows).
+
 %% candidato id, nível, racial?, dedicação integral?, pendências?)
 candidato('Sérgio Alexandre Minehira', doutorado, true, false, false).
 candidato('Renan Evangelista Silva', doutorado, true, false, true).
