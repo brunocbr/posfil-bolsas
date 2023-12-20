@@ -29,14 +29,17 @@
 :- endif.
 
 cotas_raciais(Nivel, L) :-
-    findall(X, bolsa(X, Nivel, _, _, true, _), L).
+    findall(X, bolsa(X, Nivel, _, _, true, _), L1),
+    ordena_bolsas(L1, L).
 
 cotas_geral(Nivel, ExcedenteCotasRaciais, L) :-
     findall(X, bolsa(X, Nivel, _, _, false, _), L1),
+    ordena_bolsas(L1, L),
     append(ExcedenteCotasRaciais, L1, L).
 
 bolsas_tipo(Nivel, Agencia, Modalidade, L) :-
-    findall(X, bolsa(X, Nivel, Agencia, Modalidade, _, _), L).
+    findall(X, bolsa(X, Nivel, Agencia, Modalidade, _, _), L1),
+    ordena_Bolsas(L1, L).
 
 cumpre_requisitos(capes, 1, C) :-
     dedicação_integral(C), sem_pendências(C).
@@ -123,6 +126,30 @@ atribui_bolsa(Bolsa/Candidato, Atribuicao) :-
 atribuições_bolsas(A) :-
     resultado_completo(L),
     maplist(atribui_bolsa, L, A).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Predicados auxiliares %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Define a ordem dos meses
+ordem_mes(jan, 1). ordem_mes(fev, 2). ordem_mes(mar, 3). ordem_mes(abr, 4).
+ordem_mes(mai, 5). ordem_mes(jun, 6). ordem_mes(jul, 7). ordem_mes(ago, 8).
+ordem_mes(set, 9). ordem_mes(out, 10). ordem_mes(nov, 11). ordem_mes(dez, 12).
+
+data_disponibilidade(Bolsa, Ano-MesNum) :-
+    bolsa(Bolsa,_,_,_,_,Data),
+    atomic_list_concat([Mes, AnoStr], '/', Data),
+    atom_number(AnoStr, Ano),
+    ordem_mes(Mes, MesNum).
+
+compara_data_disponibilidade(Delta, B1, B2) :-
+    data_disponibilidade(B1, Ano1-Mes1),
+    data_disponibilidade(B2, Ano2-Mes2),
+    compare(Delta, Ano1-Mes1-B1, Ano2-Mes2-B2). % B1/B2 aqui evitam duplicidade
+
+ordena_bolsas(ListaBolsas, ListaBolsasOrdenada) :-
+    predsort(compara_data_disponibilidade, ListaBolsas, ListaBolsasOrdenada).
+
 
 %%%%%%%%%%%%%%
 %% DATABASE %%
