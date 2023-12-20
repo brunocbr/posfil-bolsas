@@ -190,36 +190,6 @@ grava_distribuição :-
             'Agência', 'Modalidade', 'Disponibilidade')], A, Rows),
     csv_write_file("../output/distribuição_bolsas.csv", Rows).
 
-%% candidato id, nível, racial?, dedicação integral?, pendências?)
-candidato('Sérgio Alexandre Minehira', doutorado, true, false, false).
-candidato('Renan Evangelista Silva', doutorado, true, false, true).
-candidato('André Christian Dalpicolo', doutorado, false, false, false).
-candidato('Antonio José Barreto Filho', doutorado, true, true, false).
-candidato('Abigail Campos Leal', doutorado, true, true, false).
-candidato('Paloma Romeiro Comparato', doutorado, false, true, false).
-candidato('Gabriel Lemes Duarte', mestrado, true, true, false).
-candidato('Antonio Carlos Figueiredo Ferraz Ferreira', mestrado, false, true, true).
-candidato('Pedro Navarro Artoni', mestrado, false, true, true).
-candidato('ALESSANDRA ALVES PELEGRINI', mestrado, false, true, false).
-candidato('Vinícius Ruiz Barbanti', mestrado, false, true, false).
-candidato('Lucas Rodrigues Bello', mestrado, false, true, false).
-candidato('Raul Signorini Quintão', mestrado, false, true, false).
-candidato('João Martins Timóteo da Costa', mestrado, false, false, false).
-candidato('José Kapundi Rodrigues', mestrado, true, true, false).
-
-%% bolsa(código, nível, agência, tipo, cota?, mês/ano de disponibilidade).
-bolsa(1, doutorado, capes, 1, true, 'jan/24').
-bolsa(2, doutorado, capes, 2, true, 'jan/24').
-bolsa(3, doutorado, capes, 2, false, 'fev/24').
-bolsa(4, doutorado, capes, 2, false, 'fev/24').
-bolsa(5, doutorado, capes, 2, false, 'mar/24').
-bolsa(6, mestrado, capes, 1, true, 'jan/24').
-bolsa(7, mestrado, capes, 1, false, 'fev/24').
-bolsa(8, mestrado, capes, 2, false, 'mar/24').
-bolsa(9, mestrado, capes, 2, false, 'abr/24').
-bolsa(10, mestrado, capes, 2, false, 'mar/24').
-
-
 candidato(X, Nivel) :-
     candidato(X, Nivel, _, _, _).
 
