@@ -34,8 +34,8 @@ cotas_raciais(Nivel, L) :-
 
 cotas_geral(Nivel, ExcedenteCotasRaciais, L) :-
     findall(X, bolsa(X, Nivel, _, _, false, _), L1),
-    ordena_bolsas(L1, L),
-    append(ExcedenteCotasRaciais, L1, L).
+    append(ExcedenteCotasRaciais, L1, L2),
+    ordena_bolsas(L2, L).
 
 bolsas_tipo(Nivel, Agencia, Modalidade, L) :-
     findall(X, bolsa(X, Nivel, Agencia, Modalidade, _, _), L1),
