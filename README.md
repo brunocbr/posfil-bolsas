@@ -40,6 +40,14 @@ Certifique-se de ter o SWI-Prolog instalado em seu ambiente para executar o prog
 ?- carrega_dados, atribuições_bolsas(Atribuicoes).
 ```
 
+Alternativamente, você pode usar o [SWISH](https://github.com/SWI-Prolog/swish) (com a [configuração de IDE local](https://github.com/SWI-Prolog/swish?tab=readme-ov-file#running-swish-as-additional-local-ide)):
+
+```prolog
+?- swish.
+```
+
+Carregue então um 📘 [caderno de notas](notebooks/swish).
+
 ## Autor
 
 Este programa foi desenvolvido por Bruno Loureiro Conte.
