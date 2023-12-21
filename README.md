@@ -33,11 +33,11 @@ Certifique-se de ter o SWI-Prolog instalado em seu ambiente para executar o prog
 ## Exemplos de Uso
 
 ```prolog
-% Exemplo: Consultar candidatos de mestrado
-?- candidatos(mestrado, ListaMestrado).
+% Exemplo: Consultar candidatos de mestrado, lendo dados de arquivo CSV:
+?- carrega_dados_locais, candidatos(mestrado, ListaMestrado).
 
-% Exemplo: Realizar distribuição de bolsas, lendo dados de arquivos CSV
-?- carrega_dados, atribuições_bolsas(Atribuicoes).
+% Exemplo: Realizar distribuição de bolsas:
+?- atribuições_bolsas(Atribuicoes).
 ```
 
 Alternativamente, você pode usar o [SWISH](https://github.com/SWI-Prolog/swish) (com a [configuração de IDE local](https://github.com/SWI-Prolog/swish?tab=readme-ov-file#running-swish-as-additional-local-ide)):
