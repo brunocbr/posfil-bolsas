@@ -165,7 +165,7 @@ carrega_bolsas :-
                   [functor(bolsa), arity(6), separator(0',)]),
     maplist(assert, Rows).
 
-carrega_dados :-
+carrega_dados_locais :-
     carrega_bolsas,
     carrega_candidatos.
 

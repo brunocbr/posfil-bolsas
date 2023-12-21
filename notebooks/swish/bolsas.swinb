@@ -5,21 +5,31 @@
 </div>
 
 <div class="nb-cell markdown" name="md5">
-## Distribuição de cotas de Bolsas
+## Distribuição de cotas de bolsas de pesquisa
 </div>
 
 <div class="nb-cell markdown" name="md6">
-Este caderno elenca os passos para realizar a distribuição de bolsas do [Programa de Pós-Graduação em Filosofia da PUC-SP](https://www.pucsp.br/pos-graduacao/mestrado-e-doutorado/filosofia).
+Este caderno elenca os passos para a distribuição de bolsas do [Programa de Pós-Graduação em Filosofia da PUC-SP](https://www.pucsp.br/pos-graduacao/mestrado-e-doutorado/filosofia).
 
 O programa realiza a distribuição seguindo critérios de ordem de classificação dos candidatos, cotas raciais e satisfação de requisitos para as modalidades de bolsas.
 </div>
 
+<div class="nb-cell markdown" name="md8">
+### Carregamento de dados
+
+
+</div>
+
 <div class="nb-cell markdown" name="md1">
-Primeiro, carregamos os dados dos arquivos CSV locais.
+Caso esteja rodando o SWISH localmente, é possível atualizar os arquivos `candidatos_bolsas.csv` e `bolsas_disponíveis.csv` no diretório `data`, e carregar os dados a partir deles:
 </div>
 
 <div class="nb-cell query" data-tabled="true" name="q1">
-carrega_dados.
+carrega_dados_locais.
+</div>
+
+<div class="nb-cell markdown" name="md9">
+### Verificação das informações
 </div>
 
 <div class="nb-cell markdown" name="md2">
@@ -39,7 +49,9 @@ bolsa(Bolsa, Nivel, Agencia, Modalidade, Cota, Disponibilidade).
 </div>
 
 <div class="nb-cell markdown" name="md4">
-Finalmente, geramos a lista de atribuições das cotas, segundo a ordem de classificação, critérios raciais e satisfação de requisitos para as modalidades de bolsas:
+### Geração da lista de distribuição
+
+Aqui, geramos a lista de atribuições das cotas, segundo a ordem de classificação, critérios raciais e satisfação de requisitos para as modalidades de bolsas:
 </div>
 
 <div class="nb-cell query" data-tabled="true" name="q4">
@@ -47,7 +59,7 @@ atribuições_bolsas(Atribuições).
 </div>
 
 <div class="nb-cell markdown" name="md7">
-É possível ainda gravar o resultado em um arquivo CSV local:
+Se estiver rodando localmente, é possível ainda gravar o resultado em um arquivo CSV local (no diretório `output`):
 </div>
 
 <div class="nb-cell query" data-tabled="true" name="q5">
