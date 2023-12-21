@@ -1,0 +1,57 @@
+<div class="notebook hide-navbar open-fullscreen">
+
+<div class="nb-cell html" name="htm1">
+<img src="https://www.pucsp.br/sites/default/files/download/iniciacao-cientifica/brasao-pucsp-assinatura-alternativa-RGB.png" alt="PUCSP Logo" width="200">
+</div>
+
+<div class="nb-cell markdown" name="md5">
+## Distribuição de cotas de Bolsas
+</div>
+
+<div class="nb-cell markdown" name="md6">
+Este caderno elenca os passos para realizar a distribuição de bolsas do [Programa de Pós-Graduação em Filosofia da PUC-SP](https://www.pucsp.br/pos-graduacao/mestrado-e-doutorado/filosofia).
+
+O programa realiza a distribuição seguindo critérios de ordem de classificação dos candidatos, cotas raciais e satisfação de requisitos para as modalidades de bolsas.
+</div>
+
+<div class="nb-cell markdown" name="md1">
+Primeiro, carregamos os dados dos arquivos CSV locais.
+</div>
+
+<div class="nb-cell query" data-tabled="true" name="q1">
+carrega_dados.
+</div>
+
+<div class="nb-cell markdown" name="md2">
+Para verificar a lista dos candidatos:
+</div>
+
+<div class="nb-cell query" data-tabled="true" name="q2">
+candidato(Nome, Nivel, Racial, Integral, Pendencias).
+</div>
+
+<div class="nb-cell markdown" name="md3">
+E para verificar a lista de bolsas disponíveis:
+</div>
+
+<div class="nb-cell query" data-tabled="true" name="q3">
+bolsa(Bolsa, Nivel, Agencia, Modalidade, Cota, Disponibilidade).
+</div>
+
+<div class="nb-cell markdown" name="md4">
+Finalmente, geramos a lista de atribuições das cotas, segundo a ordem de classificação, critérios raciais e satisfação de requisitos para as modalidades de bolsas:
+</div>
+
+<div class="nb-cell query" data-tabled="true" name="q4">
+atribuições_bolsas(Atribuições).
+</div>
+
+<div class="nb-cell markdown" name="md7">
+É possível ainda gravar o resultado em um arquivo CSV local:
+</div>
+
+<div class="nb-cell query" data-tabled="true" name="q5">
+grava_distribuição.
+</div>
+
+</div>

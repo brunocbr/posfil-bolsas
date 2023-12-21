@@ -22,24 +22,10 @@
 :- use_module(library(apply)).
 :- use_module(library(csv)).
 
-:- if(current_predicate(use_rendering/1)).
+:- if(current_predicate(swish_render:use_rendering/2)).
 :- use_rendering(table,
                  [header(atribuição_bolsa('Bolsa', 'Candidato', 'Nível', 'Cota racial',
                                           'Agência', 'Modalidade', 'Disponibilidade'))]).
-:- endif.
-
-:- if(current_predicate(data_source/2)).
-:- data_source(bolsa, csv('https://raw.githubusercontent.com/brunocbr/posfil-bolsas/main/data/bolsas_dispon%C3%ADveis.csv', [])).
-
-bolsa(Bolsa, Nivel, Agencia, Modalidade, Cota, Disponibilidade) :-
-    bolsa{bolsa:Bolsa, nivel:Nivel, agencia:Agencia, modalidade:Modalidade,
-          cota_racial:Cota, disponibilidade:Disponibilidade}.
-
-:- data_source(candidato, csv('https://raw.githubusercontent.com/brunocbr/posfil-bolsas/main/data/candidatos_bolsas.csv', [])).
-
-candidato(Nome, Nivel, Racial, Integral, Pendencias) :-
-    candidato{nome:Nome, nivel:Nivel, racial_declarado:Racial,
-              dedicacao_integral:Integral, pendencias:Pendencias}.
 :- endif.
 
 cotas_raciais(Nivel, L) :-
