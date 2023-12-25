@@ -34,7 +34,7 @@ Certifique-se de ter o SWI-Prolog instalado em seu ambiente para executar o prog
 
 ```prolog
 % Exemplo: Consultar candidatos de mestrado, lendo dados de arquivo CSV:
-?- carrega_dados_locais, candidatos(mestrado, ListaMestrado).
+?- carrega_dados_locais("edital_2023-1"), candidatos(mestrado, ListaMestrado).
 
 % Exemplo: Realizar distribuição de bolsas:
 ?- atribuições_bolsas(Atribuicoes).

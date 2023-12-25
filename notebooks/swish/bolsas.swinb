@@ -1,4 +1,4 @@
-<div class="notebook hide-navbar open-fullscreen">
+<div class="notebook">
 
 <div class="nb-cell html" name="htm1">
 <img src="https://www.pucsp.br/sites/default/files/download/iniciacao-cientifica/brasao-pucsp-assinatura-alternativa-RGB.png" alt="PUCSP Logo" width="200">
@@ -16,8 +16,6 @@ O programa realiza a distribuição seguindo critérios de ordem de classificaç
 
 <div class="nb-cell markdown" name="md8">
 ### Carregamento de dados
-
-
 </div>
 
 <div class="nb-cell markdown" name="md1">
@@ -25,7 +23,7 @@ Caso esteja rodando o SWISH localmente, é possível atualizar os arquivos `cand
 </div>
 
 <div class="nb-cell query" data-tabled="true" name="q1">
-carrega_dados_locais.
+carrega_dados_locais("edital_2023-1").
 </div>
 
 <div class="nb-cell markdown" name="md9">

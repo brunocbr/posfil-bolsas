@@ -52,28 +52,28 @@ distribui_bolsas(_, _, LC, [], EC1, EC, EB, EB, L, L) :-
     append(EC1, LC, EC),!. % Preserva excedente de candidatos sem atribuição.
 
 distribui_bolsas(Agencia, Tipo, [C|RestoCandidatos], [B|RestoBolsas],
-           EC1, ExcedenteCandidatos,
-           EB1, ExcedenteBolsas,
-           L1, L) :-
+                 EC1, ExcedenteCandidatos,
+                 EB1, ExcedenteBolsas,
+                 L1, L) :-
     cumpre_requisitos(Agencia, Tipo, C),
     append(L1, [B/C], L2),
     distribui_bolsas(Agencia, Tipo, RestoCandidatos, RestoBolsas,
-               EC1, ExcedenteCandidatos,
-               EB1, ExcedenteBolsas,
-               L2, L).
+                     EC1, ExcedenteCandidatos,
+                     EB1, ExcedenteBolsas,
+                     L2, L).
 
 distribui_bolsas(Agencia, Tipo, [C|RestoCandidatos], LB,
-           EC1, ExcedenteCandidatos,
-           EB1, ExcedenteBolsas, L1, L) :-
+                 EC1, ExcedenteCandidatos,
+                 EB1, ExcedenteBolsas, L1, L) :-
     append(EC1, [C], EC2), % Candidato não cumpre requisito da bolsa, LB permanece
     distribui_bolsas(Agencia, Tipo, RestoCandidatos, LB, EC2, ExcedenteCandidatos,
-               EB1, ExcedenteBolsas, L1, L).
+                     EB1, ExcedenteBolsas, L1, L).
 
 distribui_bolsas(Agencia, Tipo, ListaCandidatos, ListaBolsas,
                  ExcedenteCandidatos, ExcedenteBolsas, L) :-
     distribui_bolsas(Agencia, Tipo, ListaCandidatos, ListaBolsas,
-                    [], ExcedenteCandidatos, [], ExcedenteBolsas,
-                    [], L).
+                     [], ExcedenteCandidatos, [], ExcedenteBolsas,
+                     [], L).
 
 tipo_bolsa(Nivel, Agencia, Modalidade, X) :-
     bolsa(X, Nivel, Agencia, Modalidade, _, _).
@@ -153,17 +153,32 @@ ordena_bolsas(ListaBolsas, ListaBolsasOrdenada) :-
 
 :- dynamic candidato/5, bolsa/6.
 
+arquivo_contextualizado(Nome, Extensao, Arquivo) :-
+    ( contexto(Contexto)
+    ->  string_concat(Nome, "_", A1),
+        string_concat(A1, Contexto, A2)
+    ;	Nome = A2
+    ),
+    string_concat(A2, ".", A3),
+    string_concat(A3, Extensao, Arquivo).
+
 carrega_candidatos :-
     retractall(candidato(_,_,_,_,_)),
-    csv_read_file("../data/candidatos_bolsas.csv", [_Header|Rows],
+    arquivo_contextualizado("../data/candidatos_bolsas", "csv", Arquivo),
+    csv_read_file(Arquivo, [_Header|Rows],
                   [functor(candidato), arity(5), separator(0',)]),
     maplist(assert, Rows).
 
 carrega_bolsas :-
     retractall(bolsa(_,_,_,_,_,_)),
-    csv_read_file("../data/bolsas_disponíveis.csv", [_Header|Rows],
+    arquivo_contextualizado("../data/bolsas_disponíveis", "csv", Arquivo),
+    csv_read_file(Arquivo, [_Header|Rows],
                   [functor(bolsa), arity(6), separator(0',)]),
     maplist(assert, Rows).
+
+carrega_dados_locais(Contexto) :-
+    retractall(contexto(_)), assert(contexto(Contexto)),
+    carrega_dados_locais.
 
 carrega_dados_locais :-
     carrega_bolsas,
@@ -172,8 +187,9 @@ carrega_dados_locais :-
 grava_distribuição :-
     atribuições_bolsas(A),
     append([atribuição_bolsa('Bolsa', 'Candidato', 'Nível', 'Cota racial',
-            'Agência', 'Modalidade', 'Disponibilidade')], A, Rows),
-    csv_write_file("../output/distribuição_bolsas.csv", Rows).
+                             'Agência', 'Modalidade', 'Disponibilidade')], A, Rows),
+    arquivo_contextualizado("../output/distribuição_bolsas", "csv", Arquivo),
+    csv_write_file(Arquivo, Rows).
 
 candidato(X, Nivel) :-
     candidato(X, Nivel, _, _, _).
